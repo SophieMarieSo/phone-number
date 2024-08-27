@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import SearchBar from './SearchBar';
 import ContactItem from './ContactItem';
 import { useSelector } from 'react-redux';
-import { Button } from 'react-bootstrap';
+import { Button, Col, Row } from 'react-bootstrap';
 
 export default function ContactList() {
   const { contactList, search } = useSelector((state) => state);
@@ -19,16 +19,20 @@ export default function ContactList() {
   return (
     <div>
       <SearchBar />
-      <div className='total-container'>
-        <div className='total'>TOTAL: {filteredList?.length}</div>
-        <Button
-          variant='outline-primary'
-          size='sm'
-          onClick={() => setFilteredList(contactList)}
-        >
-          모두보기
-        </Button>
-      </div>
+      <Row className='total-container'>
+        <Col lg={9} sm={9} className='total'>
+          TOTAL: {filteredList?.length}
+        </Col>
+        <Col lg={3} sm={3}>
+          <Button
+            variant='outline-primary'
+            size='sm'
+            onClick={() => setFilteredList(contactList)}
+          >
+            모두보기
+          </Button>
+        </Col>
+      </Row>
       {filteredList?.map((contact, idx) => (
         <ContactItem key={idx} contact={contact} />
       ))}
