@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
 
 export default function ContactForm() {
   const [info, setInfo] = useState({ name: '', phoneNum: '' });
+  const dispatch = useDispatch();
 
   return (
     <Form
       onSubmit={(e) => {
         e.preventDefault();
+        dispatch({ type: 'ADD_CONTACT', payload: info });
       }}
     >
       <Form.Group className='mb-3' controlId='formName'>
