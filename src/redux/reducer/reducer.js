@@ -1,5 +1,6 @@
 const initialState = {
   contactList: [],
+  search: '',
 };
 
 export default function reducer(state = initialState, action) {
@@ -14,6 +15,8 @@ export default function reducer(state = initialState, action) {
           { name: payload.name, phoneNum: payload.phoneNum },
         ],
       };
+    case 'FILTER_CONTACT':
+      return { ...state, search: payload.search };
 
     default:
       return { ...state };
